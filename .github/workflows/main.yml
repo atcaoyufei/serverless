@@ -35,13 +35,13 @@ jobs:
         python3 main.py --client hostloc --username ${{ secrets.LOC_USERNAME }} --password ${{ secrets.LOC_PASSWORD }}
 
     - name: Run cloud189
-        run: |
-          python3 main.py --client cloud189 --username ${{ secrets.CLOUD_USERNAME }} --password ${{ secrets.CLOUD_PASSWORD }}
+      run: |
+        python3 main.py --client cloud189 --username ${{ secrets.CLOUD_USERNAME }} --password ${{ secrets.CLOUD_PASSWORD }}
 
     - name: Run cloud189
-        run: |
-          python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
+      run: |
+        python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
 
     - name: Run zimuzu
-        run: |
-          python3 main.py --client zimuzu --username ${{ secrets.ZIMUZU_USERNAME }} --password ${{ secrets.ZIMUZU_PASSWORD }}
+      run: |
+        python3 main.py --client zimuzu --username ${{ secrets.ZIMUZU_USERNAME }} --password ${{ secrets.ZIMUZU_PASSWORD }}
