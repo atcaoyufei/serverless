@@ -86,7 +86,7 @@ class Cloud189(BaseClient):
             "paramId": param_id
         }
         result = self.fetch(url, data).json()
-        self.log(result)
+        self.log(result['msg'])
 
         redirect_url = result['toUrl']
         self.fetch(redirect_url)

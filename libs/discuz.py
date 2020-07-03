@@ -22,7 +22,7 @@ def _get_message(html, default_message=None):
 class Discuz(BaseClient):
 
     def __init__(self):
-        super().__init__()
+        super(Discuz, self).__init__()
 
     def user_info(self):
         info_url = f'{self.base_url}/home.php?mod=spacecp&ac=credit&op=base'

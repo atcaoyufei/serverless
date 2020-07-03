@@ -3,7 +3,6 @@ import os
 import time
 
 import requests
-from cloudant import Cloudant
 from telegram import Bot
 
 
@@ -39,7 +38,7 @@ class BaseClient:
 
         # self.client.disconnect()
 
-    def _handler(self, **kwargs):
+    def _handler(self, username, password, **kwargs):
         pass
 
     def fetch(self, url, data=None, method='GET', **kwargs):
@@ -59,11 +58,12 @@ class BaseClient:
             bot = Bot(self.tg_bot)
             bot.send_message(chat_id=self.tg_chat_id, text=message, **kwargs)
 
-    def log(self, *args):
+    @staticmethod
+    def log(*args):
         message = time.strftime('%Y-%m-%d %H:%M:%S')
         for arg in args:
             message = f'{message} {str(arg)}'
-        print(self.__class__.__name__, message)
+        print(message)
 
     @staticmethod
     def success(message, data=None):
