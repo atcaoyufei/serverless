@@ -1,0 +1,47 @@
+name: Serverless
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: '55 8,15 * * *'
+
+env:
+  db_key: ${{ secrets.DB_KEY }}
+  db_user: ${{ secrets.DB_USER }}
+  tg_bot: ${{ secrets.TG_BOT }}
+  tg_chat_id: ${{ secrets.TG_CHAT_ID }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.6'
+
+    - name: requirements
+      run: |
+        pip3 install -r requirements.txt
+
+    - name: Run cyyun
+      run: |
+        python3 main.py --client cyyun --username ${{ secrets.CY_USERNAME }} --password ${{ secrets.CY_PASSWORD }}
+
+    - name: Run hostloc
+      run: |
+        python3 main.py --client hostloc --username ${{ secrets.LOC_USERNAME }} --password ${{ secrets.LOC_PASSWORD }}
+
+    - name: Run cloud189
+        run: |
+          python3 main.py --client cloud189 --username ${{ secrets.CLOUD_USERNAME }} --password ${{ secrets.CLOUD_PASSWORD }}
+
+    - name: Run cloud189
+        run: |
+          python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
+
+    - name: Run zimuzu
+        run: |
+          python3 main.py --client zimuzu --username ${{ secrets.ZIMUZU_USERNAME }} --password ${{ secrets.ZIMUZU_PASSWORD }}
