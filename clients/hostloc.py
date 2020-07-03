@@ -9,12 +9,11 @@ class Hostloc(Discuz):
         self.base_url = 'https://www.hostloc.com'
 
     def _handler(self, username, password, **kwargs):
-        print(username)
-        # data = self.login(username, password)
-        # self.log(username, data['message'])
-        # if not self.is_ok(data):
-        #     return
-        #
-        # # self.log(self.user_info())
-        # self.views()
-        # self.log(username, self.user_info()['message'])
+        data = self.login(username, password)
+        self.log(data['message'])
+        if not self.is_ok(data):
+            return
+
+        # self.log(self.user_info())
+        self.views()
+        self.log(self.user_info()['message'])

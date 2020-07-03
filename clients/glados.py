@@ -1,3 +1,5 @@
+import base64
+
 import requests
 
 from libs.base import BaseClient
@@ -10,7 +12,8 @@ class Glados(BaseClient):
 
     def run(self, **kwargs):
         try:
-            self.log(self.checkin(kwargs.get('cookie')))
+            cookie = base64.b64decode(kwargs.get('cookie'))
+            self.log(self.checkin(cookie))
         except Exception as e:
             print(e)
 
