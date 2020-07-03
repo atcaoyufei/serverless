@@ -3,6 +3,7 @@ import os
 import time
 
 import requests
+from requests.cookies import cookiejar_from_dict
 from telegram import Bot
 
 
@@ -11,6 +12,7 @@ class BaseClient:
     def __init__(self):
         self.base_url = None
         self.http = requests.session()
+        self.charset = 'utf-8'
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
         }
@@ -32,6 +34,7 @@ class BaseClient:
         for i, username in enumerate(username_list):
             password = password_list[0] if len(password_list) == 1 else password_list[i]
             try:
+                self.http.cookies = cookiejar_from_dict({})
                 self._handler(username=username, password=password, **kwargs)
             except Exception as e:
                 print(e)
@@ -50,6 +53,7 @@ class BaseClient:
 
         response = self.http.request(method, url, data=data, **kwargs)
         if response.ok:
+            response.encoding = self.charset
             return response
         raise Exception(response.status_code, url, response.text)
 

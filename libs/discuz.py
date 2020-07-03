@@ -102,7 +102,7 @@ class Discuz(BaseClient):
             if form:
                 break
 
-            if not form and i >= max_retry:
+            if not form or i >= max_retry:
                 raise Exception('login parse form error', self.base_url)
 
         action = '%s/%s%s' % (self.base_url, form.attr('action').strip('/'), '&inajax=1')

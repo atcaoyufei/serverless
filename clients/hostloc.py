@@ -1,4 +1,3 @@
-from libs.base import BaseClient
 from libs.discuz import Discuz
 
 
