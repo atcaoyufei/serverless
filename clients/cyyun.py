@@ -1,3 +1,6 @@
+import re
+import time
+
 import pyquery
 
 from libs.base import BaseClient
@@ -23,7 +26,9 @@ class CyYun(BaseClient):
         doc = pyquery.PyQuery(html)
         container = doc('.container .row').eq(0)
         expire_info = container('.text-dark-50').eq(1).text().replace(' : ', ': ').strip()
-        if expire_info.find('企图白嫖') != -1:
+
+        if expire_info.find('企图白嫖') != -1 or time.strftime('%Y-%m-%d') == re.search(r'\d{4}-\d+-\d+',
+                                                                                    expire_info).group():
             self.buy()
             return self.info(username)
 
