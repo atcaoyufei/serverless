@@ -1,6 +1,7 @@
 import logging
 import os
 import time
+from datetime import datetime, timedelta, timezone
 
 import requests
 from requests.cookies import cookiejar_from_dict
@@ -64,7 +65,8 @@ class BaseClient:
 
     @staticmethod
     def log(*args):
-        message = time.strftime('%Y-%m-%d %H:%M:%S')
+        utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc)
+        message = utc_dt.astimezone(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M:%S')
         for arg in args:
             message = f'{message} {str(arg)}'
         print(message)
