@@ -5,7 +5,7 @@ class ZiMuZu(BaseClient):
 
     def __init__(self):
         super().__init__()
-        self.base_url = 'http://www.rrys2019.com'
+        self.base_url = 'http://www.rrys2020.com'
 
     def _handler(self, username, password, **kwargs):
         result = self.login(username, password)
@@ -18,7 +18,7 @@ class ZiMuZu(BaseClient):
         self.log(data['data']['usercount'])
 
     def login(self, username, password):
-        self.fetch('{}//user/login'.format(self.base_url))
+        self.fetch('{}/user/login'.format(self.base_url))
         params = {
             'account': username,
             'password': password,
