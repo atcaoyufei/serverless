@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   schedule:
-    - cron: '55 1,3 * * *'
+    - cron: '55 0,3 * * *'
 
 env:
   db_key: ${{ secrets.DB_KEY }}
