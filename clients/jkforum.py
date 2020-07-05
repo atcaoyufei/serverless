@@ -1,6 +1,5 @@
 import base64
-
-from requests.cookies import cookiejar_from_dict
+import logging
 
 from libs.discuz import Discuz
 
@@ -13,8 +12,8 @@ class JkForum(Discuz):
 
     def run(self, **kwargs):
         try:
-            cookie = base64.b64decode(kwargs.get('cookie'))
-            self.http.cookies = cookiejar_from_dict(cookie)
+            cookie = base64.b64decode(kwargs.get('cookie')).decode('utf-8')
+            self.http.headers['Cookie'] = cookie
             try:
                 self.log(self.user_info()['message'])
             except Exception as e:
@@ -22,11 +21,11 @@ class JkForum(Discuz):
                 return
 
             self.views()
-            self.log(self.poke()['message'])
-            self.log(self.sign()['message'])
+            self.poke()
+            self.sign()
             self.log(self.user_info()['message'])
         except Exception as e:
-            print(e)
+            logging.exception(e)
 
     def _handler(self, username, password, **kwargs):
         data = self.login(username, password)
