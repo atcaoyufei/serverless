@@ -7,7 +7,11 @@ class UpTime(Discuz):
         super(UpTime, self).__init__()
 
     def run(self, **kwargs):
-        url_list = ['http://pyindex.live/', 'http://caoyufei.bplaced.net/', 'https://zzcworld.com/']
+        url_list = [
+            'http://pyindex.live/',
+            'http://caoyufei.bplaced.net/',
+            'https://web.coayufei.usw1.kubesail.io/env'
+        ]
         for url in url_list:
             try:
                 self.log(url, 'http code:', self.fetch(url, timeout=10).status_code)
