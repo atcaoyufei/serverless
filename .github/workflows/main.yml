@@ -45,3 +45,15 @@ jobs:
     - name: Run zimuzu
       run: |
         python3 main.py --client zimuzu --username ${{ secrets.ZIMUZU_USERNAME }} --password ${{ secrets.ZIMUZU_PASSWORD }}
+
+    - name: Run ck101
+      run: |
+        python3 main.py --client ck101 --username ${{ secrets.CK101_USERNAME }} --password ${{ secrets.CK101_PASSWORD }}
+
+    - name: Run jkforum cooc123
+      run: |
+        python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_COOC123_COOKIE }}
+
+    - name: Run jkforum caoyufei
+      run: |
+        python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_CAOYUFEI_COOKIE }}

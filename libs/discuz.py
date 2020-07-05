@@ -26,7 +26,10 @@ class Discuz(BaseClient):
 
     def user_info(self):
         info_url = f'{self.base_url}/home.php?mod=spacecp&ac=credit&op=base'
-        res = self.fetch(info_url)
+        res = self.fetch(info_url, allow_redirects=False)
+        if res.status_code != 200:
+            raise Exception('The cookie has expired')
+
         doc = pyquery.PyQuery(res.text)
         html = doc('.creditl').html()
         if html:
