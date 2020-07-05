@@ -1,8 +1,8 @@
 name: Uptime
 
 on:
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
   schedule:
     - cron: '0 */2 * * *'
 

@@ -10,7 +10,7 @@ class UpTime(Discuz):
         url_list = [
             'http://pyindex.live/',
             'http://caoyufei.bplaced.net/',
-            'https://web.coayufei.usw1.kubesail.io/env'
+            'http://web.coayufei.usw1.kubesail.io/env'
         ]
         for url in url_list:
             try:
