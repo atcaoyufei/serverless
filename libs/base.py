@@ -18,10 +18,11 @@ class BaseClient:
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
         }
         self.logger = logging.getLogger(self.__class__.__name__)
-        # self.client = Cloudant.iam(os.environ.get('db_user'), os.environ.get('db_key'), connect=True)
-        # self.db = self.client[os.environ.get('db_name', 'serverless')]
         self.tg_bot = os.environ.get('tg_bot')
         self.tg_chat_id = os.environ.get('tg_chat_id')
+
+        self.utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8)))
+        self.now_time = self.utc_dt.strftime('%Y-%m-%d %H:%M:%S')
 
     def run(self, **kwargs):
         username_list = kwargs.get('username').split(',')

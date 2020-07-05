@@ -1,0 +1,29 @@
+name: T66y
+
+on:
+  schedule:
+    - cron: '*/8 1-4 * * *'
+
+env:
+  db_key: ${{ secrets.DB_KEY }}
+  db_user: ${{ secrets.DB_USER }}
+  tg_bot: ${{ secrets.TG_BOT }}
+  tg_chat_id: ${{ secrets.TG_CHAT_ID }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.6'
+
+    - name: requirements
+      run: |
+        pip3 install -r requirements.txt
+
+    - name: Run t66y
+      run: |
+        python3 main.py --client t66y --username ${{ secrets.T66Y_USERNAME }} --password ${{ secrets.T66Y_PASSWORD }}
