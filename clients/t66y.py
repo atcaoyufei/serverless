@@ -41,10 +41,7 @@ class T66y(BaseClient):
             result = self.reply(data['tid'], data['title'])
             self.log(result['message'])
             if self.is_ok(result):
-                for j, item in enumerate(pending_reply_list):
-                    if item['tid'] == data['tid']:
-                        del pending_reply_list[j]
-                        break
+                pending_reply_list.remove(data)
 
                 document[self.reply_id] = pending_reply_list
                 document['reply_count'] -= 1
