@@ -1,5 +1,6 @@
 import random
 import re
+import time
 
 import pyquery
 
@@ -49,10 +50,8 @@ class Discuz(BaseClient):
         for i in range(11):
             uid = random.choice(uid_list)
             url = f'{self.base_url}/space-uid-{uid}.html'
-            try:
-                self.fetch(url)
-            except:
-                continue
+            self.fetch(url)
+            time.sleep(1)
             view_list.append(url)
         return self.success(view_list)
 
