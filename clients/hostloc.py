@@ -32,7 +32,8 @@ class Hostloc(Discuz):
         html = response.text
         _aes = re.findall(r'toNumbers\("([^"]+)"', html, flags=re.S)
         if _aes:
-            aes_url = f'https://donjs.herokuapp.com/aes/{_aes[0]}/{_aes[1]}/{_aes[2]}'
+            aes_url = f'https://us-south.functions.cloud.ibm.com/api/v1/web/atcaoyufei_namespace-south/default/aes/?a={_aes[0]}&b={_aes[1]}&c={_aes[2]}'
+            # aes_url = f'https://donjs.herokuapp.com/aes/{_aes[0]}/{_aes[1]}/{_aes[2]}'
             aes_cookie = requests.get(aes_url).text
             # self.headers['Cookie'] = f'L7DFW={aes_cookie}'
             self.http.cookies = cookiejar_from_dict({'L7DFW': aes_cookie})
