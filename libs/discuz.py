@@ -49,7 +49,10 @@ class Discuz(BaseClient):
         for i in range(11):
             uid = random.choice(uid_list)
             url = f'{self.base_url}/space-uid-{uid}.html'
-            self.fetch(url)
+            try:
+                self.fetch(url)
+            except:
+                continue
             view_list.append(url)
         return self.success(view_list)
 
@@ -105,7 +108,7 @@ class Discuz(BaseClient):
             if form:
                 break
 
-            if not form or i >= max_retry:
+            if i >= max_retry - 1:
                 raise Exception('login parse form error', self.base_url)
 
         action = '%s/%s%s' % (self.base_url, form.attr('action').strip('/'), '&inajax=1')
