@@ -38,8 +38,9 @@ class Hostloc(Discuz):
             # self.headers['Cookie'] = f'L7DFW={aes_cookie}'
             self.http.cookies = cookiejar_from_dict({'L7DFW': aes_cookie})
             self.fetch(login_url, data=login_data)
-            response = self.fetch(f'{self.base_url}/home.php?mod=spacecp&ac=credit')
-            html = response.text
+
+        response = self.fetch(f'{self.base_url}/home.php?mod=spacecp&ac=credit')
+        html = response.text
 
         if html.find(username) == -1:
             return self.error(f'login fail.')
