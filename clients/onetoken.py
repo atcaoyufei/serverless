@@ -19,16 +19,17 @@ class OneToken(BaseClient):
         client = Cloudant.iam(os.environ.get('db_user'), os.environ.get('db_key'), connect=True)
         db = client['db-1']
         for document in db:
+            app_data = self.get_ms_token(**document)
             if document['auth_type'] == 'oauth':
                 data = self.refresh_token(**document)
-            else:
-                data = self.get_ms_token(**document)
-
-            document['access_token'] = data['access_token']
-            document['expires_time'] = int(time.time()) + 3500
-            document['update_time'] = bj_dt
-            if data.get('refresh_token'):
-                document['refresh_token'] = data['refresh_token']
+                document['access_token'] = data['access_token']
+                document['expires_time'] = int(time.time()) + 3500
+                document['update_time'] = bj_dt
+                if data.get('refresh_token'):
+                    document['refresh_token'] = data['refresh_token']
+            app_data['expires_time'] = int(time.time()) + 3500
+            app_data['update_time'] = bj_dt
+            document['app_data'] = app_data
             document.save()
         client.disconnect()
 
