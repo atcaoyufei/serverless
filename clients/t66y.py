@@ -19,8 +19,7 @@ class T66y(BaseClient):
         self.page_url = 'thread0806.php?fid=7&search=today'
         self.client = Cloudant.iam(os.environ.get('db_user'), os.environ.get('db_key'), connect=True)
         self.db = self.client[os.environ.get('db_name', 'serverless')]
-        day = self.utc_dt.strftime('%Y-%m-%d')
-        self.reply_id = f'{day}_pending_reply_list'
+        self.reply_id = 'pending_reply_list'
 
     def _handler(self, username, password, **kwargs):
         for i in range(4):
@@ -31,7 +30,8 @@ class T66y(BaseClient):
 
             document = result['data']['document']
             if document['reply_count'] <= 0:
-                document[self.reply_id].delete()
+                document[self.reply_id] = []
+                document.save()
                 break
 
             time.sleep(random.randint(60, 300))
@@ -41,10 +41,7 @@ class T66y(BaseClient):
             result = self.reply(data['tid'], data['title'])
             self.log(result['message'])
             if self.is_ok(result):
-                for j, item in enumerate(pending_reply_list):
-                    if item['tid'] == data['tid']:
-                        del pending_reply_list[j]
-                        break
+                pending_reply_list.remove(data)
 
                 document[self.reply_id] = pending_reply_list
                 document['reply_count'] -= 1
@@ -99,7 +96,7 @@ class T66y(BaseClient):
             self.send_tg('升级侠客啦')
             raise Exception('升级侠客啦')
 
-        if self.reply_id not in document:
+        if self.reply_id not in document or len(document[self.reply_id]) <= 0:
             document[self.reply_id] = self.get_pending_reply_list()
             document['reply_count'] = random.randint(6, 10)
             document.save()
