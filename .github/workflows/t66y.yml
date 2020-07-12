@@ -2,7 +2,7 @@ name: T66y
 
 on:
   schedule:
-    - cron: '*/18 1-4 * * *'
+    - cron: '*/18 1-5 * * *'
 
 env:
   db_key: ${{ secrets.DB_KEY }}
