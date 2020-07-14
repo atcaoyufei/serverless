@@ -59,3 +59,7 @@ jobs:
     - name: Run one token
       run: |
         python3 main.py --client onetoken
+
+    - name: Run sex8
+      run: |
+        python3 main.py --client sex8 --username ${{ secrets.SEX8_USERNAME }} --password ${{ secrets.SEX8_PASSWORD }}

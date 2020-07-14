@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 from requests.cookies import cookiejar_from_dict
-from telegram import Bot
+from telegram import Bot, ParseMode
 
 
 class BaseClient:
@@ -62,7 +62,7 @@ class BaseClient:
     def send_tg(self, message, **kwargs):
         if self.tg_bot and self.tg_chat_id:
             bot = Bot(self.tg_bot)
-            bot.send_message(chat_id=self.tg_chat_id, text=message, **kwargs)
+            bot.send_message(chat_id=self.tg_chat_id, text=message, parse_mode=ParseMode.MARKDOWN, **kwargs)
 
     @staticmethod
     def log(*args):
