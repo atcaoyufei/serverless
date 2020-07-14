@@ -16,13 +16,15 @@ class Sex8(Discuz):
     def _handler(self, username, password, **kwargs):
         data = self.login(username, password)
         self.log(data['message'])
-        self.send_tg(f"### {username}\n> {data['message']}")
+        markdown = f"### {username}\n> {data['message']}"
         if not self.is_ok(data):
+            self.send_tg(markdown)
             return
 
         sign_data = self.sign()
+        markdown = f'{markdown}\n> {str(sign_data)}'
         self.log(sign_data)
-        self.send_tg(f"> {str(sign_data)}")
+        self.send_tg(markdown)
         self.log(self.user_info()['message'])
 
     def sign(self):
