@@ -16,7 +16,7 @@ class Sex8(Discuz):
     def _handler(self, username, password, **kwargs):
         data = self.login(username, password)
         self.log(data['message'])
-        markdown = f"### {username}\n> {data['message']}"
+        markdown = f"###Sex8 {username}\n> {data['message']}"
         if not self.is_ok(data):
             self.send_tg(markdown)
             return
