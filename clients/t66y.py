@@ -20,6 +20,7 @@ class T66y(BaseClient):
         self.client = Cloudant.iam(os.environ.get('db_user'), os.environ.get('db_key'), connect=True)
         self.db = self.client[os.environ.get('db_name', 'serverless')]
         self.reply_id = 'pending_reply_list'
+        self.day = self.utc_dt.strftime('%Y-%m-%d')
 
     def _handler(self, username, password, **kwargs):
         for i in range(4):
@@ -31,6 +32,7 @@ class T66y(BaseClient):
             document = result['data']['document']
             if document['reply_count'] <= 0:
                 document[self.reply_id] = []
+                document[self.day] = time.strftime('%Y-%m-%d %H:%i:%s')
                 document.save()
                 break
 
@@ -91,6 +93,9 @@ class T66y(BaseClient):
             document['is_login'] = True
             document.save()
             return self.error(result['message'])
+
+        if self.day in document:
+            raise Exception('今天回帖完成.')
 
         if result['message'].find('俠客') != -1:
             self.send_tg('升级侠客啦')
