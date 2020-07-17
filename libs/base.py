@@ -64,13 +64,11 @@ class BaseClient:
             bot = Bot(self.tg_bot)
             bot.send_message(chat_id=self.tg_chat_id, text=message, **kwargs)
 
-    @staticmethod
-    def log(*args):
-        utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc)
-        message = utc_dt.astimezone(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M:%S')
+    def log(self, *args):
+        message = ''
         for arg in args:
             message = f'{message} {str(arg)}'
-        print(message)
+        self.logger.info(message)
 
     @staticmethod
     def success(message, data=None):

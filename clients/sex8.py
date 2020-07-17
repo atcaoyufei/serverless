@@ -15,7 +15,7 @@ class Sex8(Discuz):
 
     def _handler(self, username, password, **kwargs):
         data = self.login(username, password)
-        self.log(data['message'])
+        self.logger.info(data['message'])
         markdown = f"Sex8 {username}\n{data['message']}"
         if not self.is_ok(data):
             self.send_tg(markdown)
@@ -23,9 +23,9 @@ class Sex8(Discuz):
 
         sign_data = self.sign()
         markdown = f'{markdown}\n{str(sign_data)}'
-        self.log(sign_data)
+        self.logger.info(sign_data)
         self.send_tg(markdown)
-        self.log(self.user_info()['message'])
+        self.logger.info(self.user_info()['message'])
 
     def sign(self):
         sign_url = f'{self.base_url}/{self.sign_url}'

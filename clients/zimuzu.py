@@ -10,12 +10,12 @@ class ZiMuZu(BaseClient):
     def _handler(self, username, password, **kwargs):
         result = self.login(username, password)
         if int(result['status']) != 1:
-            self.log(f'login fail\n{result}')
+            self.logger.info(f'login fail\n{result}')
             return
-        self.log(f'login success')
+        self.logger.info(f'login success')
 
         data = self.fetch(f'{self.base_url}/user/login/getCurUserTopInfo').json()
-        self.log(data['data']['usercount'])
+        self.logger.info(data['data']['usercount'])
 
     def login(self, username, password):
         self.fetch('{}/user/login'.format(self.base_url))

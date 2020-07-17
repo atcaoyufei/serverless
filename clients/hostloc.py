@@ -14,18 +14,18 @@ class Hostloc(Discuz):
 
     def _handler(self, username, password, **kwargs):
         data = self.login(username, password)
-        self.log(data['message'])
+        self.logger.info(data['message'])
         markdown = f"Hostloc {username}\n{data['message']}"
         if not self.is_ok(data):
             self.send_tg(markdown)
             return
 
-        self.log(self.user_info()['message'])
+        self.logger.info(self.user_info()['message'])
         self.views()
         message = self.user_info()['message']
         markdown = f'{markdown}\n{str(message)}'
         self.send_tg(markdown)
-        self.log(message)
+        self.logger.info(message)
 
     def login(self, username, password, max_retry=4):
         login_url = f"{self.base_url}/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1"

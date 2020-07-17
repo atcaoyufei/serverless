@@ -13,7 +13,7 @@ class Glados(BaseClient):
     def run(self, **kwargs):
         try:
             cookie = base64.b64decode(kwargs.get('cookie')).decode('utf-8')
-            self.log(self.checkin(cookie))
+            self.logger.info(self.checkin(cookie))
         except Exception as e:
             print(e)
 

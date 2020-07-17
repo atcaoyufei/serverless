@@ -9,11 +9,11 @@ class Ck101(Discuz):
 
     def _handler(self, username, password, **kwargs):
         data = self.login(username, password)
-        self.log(data['message'])
+        self.logger.info(data['message'])
         if not self.is_ok(data):
             return
 
-        self.log(self.user_info()['message'])
+        self.logger.info(self.user_info()['message'])
         self.views()
         self.post(fid=3539)
-        self.log(self.user_info()['message'])
+        self.logger.info(self.user_info()['message'])

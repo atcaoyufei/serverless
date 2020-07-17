@@ -19,7 +19,7 @@ class CyYun(BaseClient):
             raise Exception(result)
 
         if self.info(username):
-            self.log(self.sign())
+            self.logger.info(self.sign())
 
     def info(self, username):
         html = self.fetch(f'{self.base_url}/user', allow_redirects=False).text
@@ -34,7 +34,7 @@ class CyYun(BaseClient):
 
         # expire_date = container('.font-size-h4 .counter').text()
         traffic = container('.font-size-h4').eq(1).text()
-        self.log(username, expire_info, traffic)
+        self.logger.info(username, expire_info, traffic)
         return html.find('已签到') == -1
 
     def sign(self):

@@ -25,14 +25,14 @@ class T66y(BaseClient):
     def _handler(self, username, password, **kwargs):
         for i in range(4):
             result = self.update_cookie(username, password)
-            self.log(result['message'])
+            self.logger.info(result['message'])
             if not self.is_ok(result):
                 continue
 
             document = result['data']['document']
             if document['reply_count'] <= 0:
                 document[self.reply_id] = []
-                document[self.day] = time.strftime('%Y-%m-%d %H:%i:%s')
+                document[self.day] = time.strftime('%Y-%m-%d %H:%M:%S')
                 document.save()
                 break
 
@@ -41,7 +41,7 @@ class T66y(BaseClient):
             pending_reply_list = document[self.reply_id]
             data = random.choice(pending_reply_list)
             result = self.reply(data['tid'], data['title'])
-            self.log(result['message'])
+            self.logger.info(result['message'])
             if self.is_ok(result):
                 pending_reply_list.remove(data)
 
@@ -88,20 +88,17 @@ class T66y(BaseClient):
         document = self.db[_id]
         self.http.cookies = cookiejar_from_dict(document['cookie'])
         result = self.get_profile()
-        self.log(result['message'])
+        self.logger.info(result['message'])
         if not self.is_ok(result):
             document['is_login'] = True
             document.save()
             return self.error(result['message'])
 
-        if self.day in document:
-            raise Exception('今天回帖完成.')
-
         if result['message'].find('俠客') != -1:
             self.send_tg('升级侠客啦')
             raise Exception('升级侠客啦')
 
-        if self.reply_id not in document or len(document[self.reply_id]) <= 0:
+        if self.reply_id not in document or len(document[self.reply_id]) <= 0 and self.day not in document:
             document[self.reply_id] = self.get_pending_reply_list()
             document['reply_count'] = random.randint(6, 10)
             document.save()

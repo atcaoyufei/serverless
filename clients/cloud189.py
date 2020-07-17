@@ -86,7 +86,7 @@ class Cloud189(BaseClient):
             "paramId": param_id
         }
         result = self.fetch(url, data).json()
-        self.log(result['msg'])
+        self.logger.info(result['msg'])
 
         redirect_url = result['toUrl']
         self.fetch(redirect_url)
@@ -104,10 +104,10 @@ class Cloud189(BaseClient):
             'User-Agent'] = 'Mozilla/5.0 (Linux; Android 5.1.1; SM-G930K Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Ecloud/8.6.3 Android/22 clientId/355325117317828 clientModel/SM-G930K imsi/460071114317824 clientChannelId/qq proVersion/1.0.6'
         data = self.fetch(url1).json()
         # net_disk_bonus = data['netdiskBonus']
-        self.log(data)
+        self.logger.info(data)
 
         data = self.fetch(url2).json()
-        self.log(data)
+        self.logger.info(data)
 
         data = self.fetch(url3).json()
-        self.log(data)
+        self.logger.info(data)
