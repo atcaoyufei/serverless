@@ -28,4 +28,4 @@ jobs:
 
     - name: Run uptime
       run: |
-        python3 main.py --client uptime
+        python3 main.py --client uptime --username ${{ secrets.UP_USERNAME }}

@@ -1,3 +1,5 @@
+from concurrent import futures
+
 from libs.discuz import Discuz
 
 
@@ -7,14 +9,16 @@ class UpTime(Discuz):
         super(UpTime, self).__init__()
 
     def run(self, **kwargs):
-        url_list = [
-            'http://pyindex.live/',
-            'http://caoyufei.bplaced.net/',
-            'http://web.coayufei.usw1.kubesail.io/env',
-            'https://0001.us-south.cf.appdomain.cloud/'
-        ]
-        for url in url_list:
-            try:
-                self.logger.info(url, 'http code:', self.fetch(url, timeout=10).status_code)
-            except Exception as e:
-                self.logger.info(e)
+        url_list = kwargs.get('username').split(',')
+        self.logger.info(url_list)
+        work = min(len(url_list), 3)
+        with futures.ThreadPoolExecutor(work) as executor:
+            args = ((url,) for url in url_list)
+            executor.map(lambda a: self.uptime_check(*a), args)
+
+    def uptime_check(self, url):
+        try:
+            code = self.fetch(url, timeout=10).status_code
+            self.logger.info(f'{url} status code {code}')
+        except Exception as e:
+            self.logger.warning(e)

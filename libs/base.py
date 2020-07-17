@@ -1,11 +1,10 @@
 import logging
 import os
-import time
 from datetime import datetime, timedelta, timezone
 
 import requests
 from requests.cookies import cookiejar_from_dict
-from telegram import Bot, ParseMode
+from telegram import Bot
 
 
 class BaseClient:
