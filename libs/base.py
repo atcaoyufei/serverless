@@ -62,7 +62,7 @@ class BaseClient:
     def send_tg(self, message, **kwargs):
         if self.tg_bot and self.tg_chat_id:
             bot = Bot(self.tg_bot)
-            bot.send_message(chat_id=self.tg_chat_id, text=message, parse_mode=ParseMode.MARKDOWN_V2, **kwargs)
+            bot.send_message(chat_id=self.tg_chat_id, text=message, **kwargs)
 
     @staticmethod
     def log(*args):
