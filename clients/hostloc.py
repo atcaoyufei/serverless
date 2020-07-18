@@ -15,16 +15,12 @@ class Hostloc(Discuz):
     def _handler(self, username, password, **kwargs):
         data = self.login(username, password)
         self.logger.info(data['message'])
-        markdown = f"Hostloc {username}\n{data['message']}"
         if not self.is_ok(data):
-            self.send_tg(markdown)
             return
 
         self.logger.info(self.user_info()['message'])
         self.views()
         message = self.user_info()['message']
-        markdown = f'{markdown}\n{str(message)}'
-        self.send_tg(markdown)
         self.logger.info(message)
 
     def login(self, username, password, max_retry=4):

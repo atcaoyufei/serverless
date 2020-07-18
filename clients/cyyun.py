@@ -34,7 +34,7 @@ class CyYun(BaseClient):
 
         # expire_date = container('.font-size-h4 .counter').text()
         traffic = container('.font-size-h4').eq(1).text()
-        self.logger.info(username, expire_info, traffic)
+        self.logger.info(f'{username} {expire_info} {traffic}')
         return html.find('已签到') == -1
 
     def sign(self):
