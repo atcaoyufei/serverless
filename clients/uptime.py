@@ -10,7 +10,7 @@ class UpTime(Discuz):
 
     def run(self, **kwargs):
         url_list = kwargs.get('username').split(',')
-        self.logger.info(url_list)
+        self.logger.info(kwargs.get('username'))
         work = min(len(url_list), 3)
         with futures.ThreadPoolExecutor(work) as executor:
             args = ((url,) for url in url_list)
