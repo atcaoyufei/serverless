@@ -88,11 +88,15 @@ class Cloud189(BaseClient):
         result = self.fetch(url, data).json()
         self.logger.info(result['msg'])
 
-        redirect_url = result['toUrl']
-        self.fetch(redirect_url)
+        if result.get('toUrl'):
+            redirect_url = result['toUrl']
+            self.fetch(redirect_url)
+            return True
+        return False
 
     def run(self, username, password, **kwargs):
-        self.login(username, password)
+        if not self.login(username, password):
+            return
 
         rand = str(round(time.time() * 1000))
         url1 = f'https://api.cloud.189.cn/mkt/userSign.action?rand={rand}&clientType=TELEANDROID&version=8.6.3&model=SM-G930K'
