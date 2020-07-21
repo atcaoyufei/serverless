@@ -103,7 +103,7 @@ class T66y(BaseClient):
             document['reply_count'] = random.randint(6, 10)
             document.save()
 
-        return self.success('', {'document': document})
+        return self.success(result['message'], {'document': document})
 
     def login(self, username, password):
         jump_url = f'{self.base_url}/{self.page_url}'
