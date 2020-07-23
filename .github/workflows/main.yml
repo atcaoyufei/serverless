@@ -63,3 +63,11 @@ jobs:
     - name: Run sex8
       run: |
         python3 main.py --client sex8 --username ${{ secrets.SEX8_USERNAME }} --password ${{ secrets.SEX8_PASSWORD }}
+
+    - name: Run pcbeta
+      run: |
+        python3 main.py --client pcbeta --username ${{ secrets.PCBETA_USERNAME }} --password ${{ secrets.PCBETA_PASSWORD }}
+
+    - name: Run 52pojie
+        run: |
+          python3 main.py --client pojie --cookie ${{ secrets.POJIE_CAOYUFEI_COOKIE }}

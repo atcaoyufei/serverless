@@ -1,4 +1,3 @@
-import base64
 import logging
 
 from libs.discuz import Discuz
@@ -12,12 +11,10 @@ class JkForum(Discuz):
 
     def run(self, **kwargs):
         try:
-            cookie = base64.b64decode(kwargs.get('cookie')).decode('utf-8')
-            self.http.headers['Cookie'] = cookie
             try:
                 self.logger.info(self.user_info()['message'])
             except Exception as e:
-                self.send_tg(str(e))
+                self.send_tg(f"{self.__class__.__name__}\n{str(e)}")
                 return
 
             self.views()

@@ -1,3 +1,4 @@
+import base64
 import logging
 import os
 from datetime import datetime, timedelta, timezone
@@ -22,6 +23,12 @@ class BaseClient:
 
         self.utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8)))
         self.now_time = self.utc_dt.strftime('%Y-%m-%d %H:%M:%S')
+        self.cookie = None
+
+    def before_run(self, **kwargs):
+        if kwargs.get('cookie'):
+            self.cookie = base64.b64decode(kwargs.get('cookie')).decode('utf-8')
+            self.http.headers['Cookie'] = self.cookie
 
     def run(self, **kwargs):
         username_list = kwargs.get('username').split(',')

@@ -3,6 +3,8 @@ import re
 import time
 
 import pyquery
+import requests
+from requests.cookies import cookiejar_from_dict
 
 from libs.base import BaseClient
 
@@ -18,6 +20,11 @@ def _get_message(html, default_message=None):
     if default_message:
         return default_message
     return html
+
+
+def get_message(html, default_message=None):
+    doc = pyquery.PyQuery(html)
+    return doc('#messagetext > p:nth-child(1)').text() or default_message
 
 
 class Discuz(BaseClient):
@@ -97,6 +104,30 @@ class Discuz(BaseClient):
 
         message = _get_message(res.text)
         return self.error(f'{params["subject"]} publish fail.\n{message}')
+
+    def login2(self, username, password):
+        login_url = f"{self.base_url}/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1"
+        login_data = {
+            "username": username,
+            "password": password,
+        }
+        self.headers['Referer'] = f'{self.base_url}/member.php?mod=logging&action=login'
+        response = self.fetch(login_url, data=login_data)
+        html = response.text
+        _aes = re.findall(r'toNumbers\("([^"]+)"', html, flags=re.S)
+        if _aes:
+            aes_url = f'https://us-south.functions.cloud.ibm.com/api/v1/web/atcaoyufei_namespace-south/default/aes/?a={_aes[0]}&b={_aes[1]}&c={_aes[2]}'
+            # aes_url = f'https://donjs.herokuapp.com/aes/{_aes[0]}/{_aes[1]}/{_aes[2]}'
+            aes_cookie = requests.get(aes_url).text
+            self.http.cookies = cookiejar_from_dict({'L7DFW': aes_cookie})
+            self.fetch(login_url, data=login_data)
+
+        response = self.fetch(f'{self.base_url}/home.php?mod=spacecp&ac=credit')
+        html = response.text
+
+        if html.find(username) == -1:
+            return self.error(f'login fail.')
+        return self.success(f'login success', data={'cookie': response.cookies})
 
     def login(self, username, password, max_retry=4):
         form = None

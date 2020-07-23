@@ -13,6 +13,7 @@ def script_main(params):
     for name, obj in inspect.getmembers(m):
         if inspect.isclass(obj) and str(obj).find('clients') != -1:
             instance = obj()
+            instance.before_run(**params)
             instance.run(**params)
             break
 

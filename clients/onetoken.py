@@ -31,6 +31,7 @@ class OneToken(BaseClient):
             app_data['update_time'] = bj_dt
             document['app_data'] = app_data
             document.save()
+            self.logger.info(f"{document['_id']} refresh done.")
         client.disconnect()
 
     def refresh_token(self, **kwargs) -> dict:
