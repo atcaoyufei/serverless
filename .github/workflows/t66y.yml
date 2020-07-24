@@ -1,6 +1,8 @@
 name: T66y
 
 on:
+  push:
+    branches: [ master ]
   schedule:
     - cron: '*/18 1-4 * * *'
 

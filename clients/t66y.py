@@ -30,6 +30,7 @@ class T66y(BaseClient):
                 continue
 
             document = result['data']['document']
+            self.logger.info(document['reply_count'])
             if document['reply_count'] <= 0:
                 document[self.reply_id] = []
                 document[self.day] = time.strftime('%Y-%m-%d %H:%M:%S')
@@ -88,7 +89,6 @@ class T66y(BaseClient):
         document = self.db[_id]
         self.http.cookies = cookiejar_from_dict(document['cookie'])
         result = self.get_profile()
-        self.logger.info(result['message'])
         if not self.is_ok(result):
             document['is_login'] = True
             document.save()
