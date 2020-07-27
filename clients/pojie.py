@@ -19,7 +19,7 @@ class PoJie(Discuz):
                 return
 
             self.headers['Referer'] = 'https://www.52pojie.cn/home.php?mod=spacecp&ac=credit&showcredit=1'
-            html = self.fetch(f'{self.base_url}/home.php?mod=task&do=draw&id=2').text
+            html = self.fetch(f'{self.base_url}/home.php?mod=task&do=apply&id=2').text
             self.logger.info(get_message(html))
             self.logger.info(self.user_info()['message'])
         except Exception as e:
