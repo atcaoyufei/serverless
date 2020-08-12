@@ -24,9 +24,9 @@ jobs:
       run: |
         pip3 install -r requirements.txt
 
-    - name: Run cyyun
-      run: |
-        python3 main.py --client cyyun --username ${{ secrets.CY_USERNAME }} --password ${{ secrets.CY_PASSWORD }}
+#    - name: Run cyyun
+#      run: |
+#        python3 main.py --client cyyun --username ${{ secrets.CY_USERNAME }} --password ${{ secrets.CY_PASSWORD }}
 
     - name: Run hostloc
       run: |
@@ -67,7 +67,3 @@ jobs:
     - name: Run pcbeta
       run: |
         python3 main.py --client pcbeta --username ${{ secrets.PCBETA_USERNAME }} --password ${{ secrets.PCBETA_PASSWORD }}
-
-    - name: Run 52pojie
-      run: |
-        python3 main.py --client pojie --cookie ${{ secrets.POJIE_CAOYUFEI_COOKIE }}
