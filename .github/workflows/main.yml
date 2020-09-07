@@ -2,7 +2,7 @@ name: Serverless
 
 on:
   schedule:
-    - cron: '55 0 * * *'
+    - cron: '55 4 * * *'
 
 env:
   db_key: ${{ secrets.DB_KEY }}
