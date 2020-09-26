@@ -56,9 +56,9 @@ jobs:
       run: |
         python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_CAOYUFEI_COOKIE }}
 
-    - name: Run one token
-      run: |
-        python3 main.py --client onetoken
+#     - name: Run one token
+#       run: |
+#         python3 main.py --client onetoken
 
     - name: Run sex8
       run: |
