@@ -36,9 +36,9 @@ jobs:
       run: |
         python3 main.py --client cloud189 --username ${{ secrets.CLOUD_USERNAME }} --password ${{ secrets.CLOUD_PASSWORD }}
 
-    - name: Run glados
-      run: |
-        python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
+#     - name: Run glados
+#       run: |
+#         python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
 
     - name: Run zimuzu
       run: |
