@@ -15,51 +15,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.6'
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
 
-    - name: requirements
-      run: |
-        pip3 install -r requirements.txt
+      - name: requirements
+        run: |
+          pip3 install -r requirements.txt
 
-    - name: Run hostloc
-      run: |
-        python3 main.py --client hostloc --username ${{ secrets.LOC_USERNAME }} --password ${{ secrets.LOC_PASSWORD }}
+      - name: Run hostloc
+        run: |
+          python3 main.py --client hostloc --username ${{ secrets.LOC_USERNAME }} --password ${{ secrets.LOC_PASSWORD }}
 
-    - name: Run cloud189
-      run: |
-        python3 main.py --client cloud189 --username ${{ secrets.CLOUD_USERNAME }} --password ${{ secrets.CLOUD_PASSWORD }}
+      - name: Run cloud189
+        run: |
+          python3 main.py --client cloud189 --username ${{ secrets.CLOUD_USERNAME }} --password ${{ secrets.CLOUD_PASSWORD }}
 
-#     - name: Run glados
-#       run: |
-#         python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
+      - name: Run glados
+        run: |
+          python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
 
-    - name: Run zimuzu
-      run: |
-        python3 main.py --client zimuzu --username ${{ secrets.ZIMUZU_USERNAME }} --password ${{ secrets.ZIMUZU_PASSWORD }}
+      - name: Run zimuzu
+        run: |
+          python3 main.py --client zimuzu --username ${{ secrets.ZIMUZU_USERNAME }} --password ${{ secrets.ZIMUZU_PASSWORD }}
 
-    - name: Run ck101
-      run: |
-        python3 main.py --client ck101 --username ${{ secrets.CK101_USERNAME }} --password ${{ secrets.CK101_PASSWORD }}
+      - name: Run ck101
+        run: |
+          python3 main.py --client ck101 --username ${{ secrets.CK101_USERNAME }} --password ${{ secrets.CK101_PASSWORD }}
 
-    - name: Run jkforum cooc123
-      run: |
-        python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_COOC123_COOKIE }}
+      - name: Run jkforum cooc123
+        run: |
+          python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_COOC123_COOKIE }}
 
-    - name: Run jkforum caoyufei
-      run: |
-        python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_CAOYUFEI_COOKIE }}
+      - name: Run jkforum caoyufei
+        run: |
+          python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_CAOYUFEI_COOKIE }}
 
-#     - name: Run one token
-#       run: |
-#         python3 main.py --client onetoken
+      #     - name: Run one token
+      #       run: |
+      #         python3 main.py --client onetoken
 
-    - name: Run sex8
-      run: |
-        python3 main.py --client sex8 --username ${{ secrets.SEX8_USERNAME }} --password ${{ secrets.SEX8_PASSWORD }}
+      - name: Run sex8
+        run: |
+          python3 main.py --client sex8 --username ${{ secrets.SEX8_USERNAME }} --password ${{ secrets.SEX8_PASSWORD }}
 
-    - name: Run pcbeta
-      run: |
-        python3 main.py --client pcbeta --username ${{ secrets.PCBETA_USERNAME }} --password ${{ secrets.PCBETA_PASSWORD }}
+      - name: Run pcbeta
+        run: |
+          python3 main.py --client pcbeta --username ${{ secrets.PCBETA_USERNAME }} --password ${{ secrets.PCBETA_PASSWORD }}
