@@ -2,7 +2,7 @@ name: Serverless
 
 on:
   schedule:
-    - cron: '55 0 * * *'
+    - cron: '55 4 * * *'
 
 env:
   db_key: ${{ secrets.DB_KEY }}
@@ -32,9 +32,9 @@ jobs:
       run: |
         python3 main.py --client cloud189 --username ${{ secrets.CLOUD_USERNAME }} --password ${{ secrets.CLOUD_PASSWORD }}
 
-    - name: Run glados
-      run: |
-        python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
+#     - name: Run glados
+#       run: |
+#         python3 main.py --client glados --cookie ${{ secrets.GLADOS_COOKIE }}
 
     - name: Run zimuzu
       run: |
@@ -52,9 +52,9 @@ jobs:
       run: |
         python3 main.py --client jkforum --cookie ${{ secrets.JKFORUM_CAOYUFEI_COOKIE }}
 
-    - name: Run one token
-      run: |
-        python3 main.py --client onetoken
+#     - name: Run one token
+#       run: |
+#         python3 main.py --client onetoken
 
     - name: Run sex8
       run: |
