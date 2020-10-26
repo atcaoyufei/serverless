@@ -63,3 +63,7 @@ jobs:
       - name: Run pcbeta
         run: |
           python3 main.py --client pcbeta --username ${{ secrets.PCBETA_USERNAME }} --password ${{ secrets.PCBETA_PASSWORD }}
+
+      - name: Run 52pojie
+        run: |
+          python3 main.py --client pojie --username 1 --password 1
