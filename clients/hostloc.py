@@ -1,8 +1,3 @@
-import re
-
-import requests
-from requests.cookies import cookiejar_from_dict
-
 from libs.discuz import Discuz
 
 

@@ -1,5 +1,6 @@
 requests~=2.21.0
 cloudant~=2.13.0
 pyquery~=1.4.0
-python-telegram-bot
 rsa~=4.0
+pymongo
+dnspython
