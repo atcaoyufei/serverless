@@ -4,3 +4,4 @@ pyquery~=1.4.0
 rsa~=4.0
 pymongo
 dnspython
+python-telegram-bot
