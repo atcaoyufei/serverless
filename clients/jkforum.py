@@ -14,7 +14,7 @@ class JkForum(Discuz):
             try:
                 self.logger.info(self.user_info()['message'])
             except Exception as e:
-                self.send_tg(f"{self.__class__.__name__}\n{str(e)}")
+                self.logger.error(f"{self.__class__.__name__}\n{str(e)}")
                 return
 
             self.views()

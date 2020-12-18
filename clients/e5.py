@@ -24,7 +24,6 @@ class E5(BaseClient):
                 self.run_api(account)
             except Exception as e:
                 self.logger.error(e)
-            break
 
         client.close()
 

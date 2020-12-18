@@ -23,5 +23,5 @@ class Glados(BaseClient):
         referer = 'https://glados.rocks/console/checkin'
         result = requests.post(url, {'token': 'glados_network'}, headers={'cookie': cookie, 'referer': referer}).json()
         if result['code'] != 0:
-            self.send_tg(f'GlaDos cookie has expired\n{result}')
+            self.logger.error(result)
         return result['message']

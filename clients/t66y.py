@@ -95,7 +95,6 @@ class T66y(BaseClient):
             return self.error(result['message'])
 
         if result['message'].find('俠客') != -1:
-            self.send_tg('升级侠客啦')
             raise Exception('升级侠客啦')
 
         if self.reply_id not in document or len(document[self.reply_id]) <= 0 and self.day not in document:

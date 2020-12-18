@@ -5,8 +5,6 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 from requests.cookies import cookiejar_from_dict
-from telegram import Bot
-
 
 class BaseClient:
 
@@ -64,11 +62,6 @@ class BaseClient:
             response.encoding = self.charset
             return response
         raise Exception(response.status_code, url, response.text)
-
-    def send_tg(self, message, **kwargs):
-        if self.tg_bot and self.tg_chat_id:
-            bot = Bot(self.tg_bot)
-            bot.send_message(chat_id=self.tg_chat_id, text=message, **kwargs)
 
     def log(self, *args):
         message = ''
