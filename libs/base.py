@@ -61,7 +61,7 @@ class BaseClient:
         if response.ok:
             response.encoding = self.charset
             return response
-        raise Exception(response.status_code, url, response.text)
+        raise Exception(response.status_code, url)
 
     def log(self, *args):
         message = ''

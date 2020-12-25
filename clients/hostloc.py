@@ -16,5 +16,5 @@ class Hostloc(Discuz):
         self.logger.info(self.user_info()['message'])
         self.views()
         message = self.user_info()['message']
-        self.logger.info(message)
+        self.logger.info(f'{username}: {message}')
 

@@ -68,3 +68,6 @@ jobs:
         run: |
           python3 main.py --client uc --username ${{ secrets.UC2_USERNAME }} --password ${{ secrets.UC_PASSWORD }}
 
+      - name: Run appletuan
+        run: |
+          python3 main.py --client appletuan --username 1 --password 1
