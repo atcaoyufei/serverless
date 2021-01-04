@@ -13,7 +13,7 @@ class AppleTuan(BaseClient):
 
     def run(self, **kwargs):
         try:
-            cookie = '_qddaz=QD.qwvb5b.ae718f.kfxdha0c; pgv_pvi=9167585280; tencentSig=1203038208; _session_id=jB8%2FXqM721E1wBESsLKSW8QKm4ZTTz%2B2Aevp%2ByKsZbCtXVNgopiDvUfEijR6mXjfBqA2Gf%2BiBYJb1oRIZbB0nkLX%2FgL00uJRlXd6PgqC2Z%2FoRIiYgsxEQM7noBCkJnqnn9j4AOmrO7UHap51yI6jydglDxTeJZh8mTsKefAWcO7Eqh8%2BAZNuS1MjeJUR%2FmqbNt%2ByD5xs6044ID%2FMbWsQb%2FTMBmA5mRRlyhwEhY%2BFgWcgFRfHGLbsLY9Qa6kRuuDiTwZC5FPquf8zwglYX2IBl1MPjAxrxiogWbLjgv1zq3e3BhsRd6sbtrd5IOkCrlSFfDXJecL9eyjKgUUhaY3AyFwg7fELY4cKGApGHRHH2AXUXRJmC07W1W3oPh%2FbtpnBMSjH0elQvWODsiaQLBx1XhXojRA25el%2FuqguL33h5BZ9--AlYEh0%2FTJOgu9tia--gXxGfRxpuqX8VWOoi1lQ8A%3D%3D'
+            cookie = '_qddaz=QD.qwvb5b.ae718f.kfxdha0c; pgv_pvi=9167585280; tencentSig=1203038208; _ga=GA1.2.360574762.1609401622; _session_id=lxfTdyQ6RRANf%2B2nclpkTbNsHi0BMR5aZoXARRXfGVqNgrxiYCXTevOJTusotttWtJrYkkA9isdo%2BYLlt1v14qZST3yCTx67oJZv%2BhdjGmRGtCCmz1PHVp8hiWK6lQmy4moowM%2B8er6Gc9IWpfz0fmdn%2BdILLf%2F3g74qYv8DauGnc2Aia6xI%2FJTL96NnKthRorYm1LOYojX%2Fbwir8XB%2FBeiIOkf%2FIzOtJru3dBbtSsidhWV%2FPu2ck0nacJAzeuRW4AMO8xvesQHTWXVoMtp9KrUix86p3c%2FP89lLEnUUV0WQPNJiO9XRvwqI4lc1wUoCz6Bth1FhOy%2Fhu%2FRG9J7try5Q6j2cODzB5FObmFdItbp95QGwVLzDQOjO%2BxciBxw58nCcOzj0snmpdTAGfZLem8mrmj%2Bcg6JcEhMPeoR5bnn1--2egKeMb3vWVmRcwq--rqfC50bPIxqTaEydY0oo2g%3D%3D'
             self.headers['Cookie'] = cookie
             self.headers[
                 'User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
