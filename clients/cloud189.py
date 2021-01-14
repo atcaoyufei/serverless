@@ -116,6 +116,6 @@ class Cloud189(BaseClient):
         data = self.fetch(url3).json()
         self.logger.info(data)
 
-        url = f'https://api.telegram.org/bot{self.tg_bot}/sendMessage'
-        self.fetch(url, {'chat_id': self.tg_chat_id, 'text': username, 'parse_mode': 'MarkdownV2'})
+        # url = f'https://api.telegram.org/bot{self.tg_bot}/sendMessage'
+        # self.fetch(url, {'chat_id': self.tg_chat_id, 'text': username, 'parse_mode': 'MarkdownV2'})
 
