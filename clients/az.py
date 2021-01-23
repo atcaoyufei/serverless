@@ -25,8 +25,11 @@ class Az(BaseClient):
         data = os.popen('az pipelines list')
         data = json.loads(data.read())
         for i in data:
-            lines = os.popen(f"az pipelines run --id {i['id']}").read()
-            run_line = json.loads(lines)
-            s = re.search(r'https://dev.azure.com/([a-z]+)/([a-z-0-9]+)/_apis/build/Builds/(\d+)', run_line)
-            if s:
-                self.logger.info(s.group())
+            lines = os.popen(f"az pipelines run --id {i['id']}")
+            try:
+                run_line = lines.read()
+                s = re.search(r'https://dev.azure.com/([a-z]+)/([a-z-0-9]+)/_apis/build/Builds/(\d+)', run_line)
+                if s:
+                    self.logger.info(s.group())
+            except Exception as e:
+                self.logger.error(e)
