@@ -11,7 +11,10 @@ class HuaWei(BaseClient):
 
     def _handler(self, username, password, **kwargs):
         project = os.environ.get('project')
-        os.system(f'az login -u {username} -p {password} --allow-no-subscriptions')
+        login_cmd = f'az login -u {username} -p {password} --allow-no-subscriptions'
+        self.logger.info(login_cmd)
+        os.system(login_cmd)
+
         os.system(f'az devops configure --defaults organization=https://dev.azure.com/{project} project={project}')
 
         data = os.popen('az pipelines list')
