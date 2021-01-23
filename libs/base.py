@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 import requests
 from requests.cookies import cookiejar_from_dict
 
+
 class BaseClient:
 
     def __init__(self):
@@ -68,6 +69,13 @@ class BaseClient:
         for arg in args:
             message = f'{message} {str(arg)}'
         self.logger.info(message)
+
+    def send_tg(self, message, **kwargs):
+        if self.tg_bot and self.tg_chat_id:
+            bot_api = f'https://api.telegram.org/bot{self.tg_bot}/sendMessage'
+            response = requests.post(bot_api,
+                                     data={'chat_id': self.tg_chat_id, 'text': message}, timeout=10)
+            self.logger.info(response.text)
 
     @staticmethod
     def success(message, data=None):
