@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import time
 
 import requests
 
@@ -33,3 +34,4 @@ class Az(BaseClient):
                     self.logger.info(s.group())
             except Exception as e:
                 self.logger.error(e)
+            time.sleep(1)
