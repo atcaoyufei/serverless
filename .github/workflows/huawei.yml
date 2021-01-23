@@ -29,4 +29,4 @@ jobs:
 
       - name: Run appletuan
         run: |
-          python3 main.py --client huawei --username ${{ secrets.HW_USERNAME }} --password ${{ secrets.HW_USERNAME }}
+          python3 main.py --client huawei --username ${{ secrets.HW_USERNAME }} --password ${{ secrets.HW_PASSWORD }}
