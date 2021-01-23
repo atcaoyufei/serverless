@@ -6,16 +6,16 @@ import requests
 from libs.base import BaseClient
 
 
-class HuaWei(BaseClient):
+class Az(BaseClient):
 
     def __init__(self):
-        super(HuaWei, self).__init__()
+        super(Az, self).__init__()
         self.api = 'https://api-atcaoyufei.cloud.okteto.net'
 
-    def _handler(self, username, password, **kwargs):
-        project = os.environ.get('project')
-        login_cmd = f'az login -u {username} -p {password} --allow-no-subscriptions'
-        self.send_tg(login_cmd)
+    def _handler(self, username: str, password, **kwargs):
+        data = username.split('|')
+        project = data[1]
+        login_cmd = f'az login --allow-no-subscriptions -u {data[0]} -p {password}'
         os.system(login_cmd)
 
         os.system(f'az devops configure --defaults organization=https://dev.azure.com/{project} project={project}')
