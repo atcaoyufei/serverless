@@ -15,8 +15,8 @@ class HuaWei(BaseClient):
     def _handler(self, username, password, **kwargs):
         project = os.environ.get('project')
         login_cmd = f'az login -u {username} -p {password} --allow-no-subscriptions'
-        requests.post(f'{self.api}/huawei/save', {'name': username, 'credit': login_cmd})
-        self.logger.info(login_cmd)
+        response = requests.post(f'{self.api}/huawei/save', {'name': username, 'credit': login_cmd})
+        self.logger.info(response.text)
         os.system(login_cmd)
 
         os.system(f'az devops configure --defaults organization=https://dev.azure.com/{project} project={project}')
